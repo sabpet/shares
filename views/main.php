@@ -22,16 +22,26 @@
     </ul>
      <ul class="nav navbar-nav navbar-right">
       <li class="nav-item active">
+        <?php if(isset($_SESSION['is_logged_in'])) : ?>
+           <a class="nav-link" href="#<?php echo ROOT_URL; ?>">Welcome <?php echo $_SESSION['user_data']['name']; ?></a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#<?php echo ROOT_URL; ?>users/logout">Logout</a>
+      </li> 
+
+          <?php else : ?>
         <a class="nav-link" href="#<?php echo ROOT_URL; ?>users/login">Login</a>
       </li>
       <li class="nav-item">
          <a class="nav-link" href="#<?php echo ROOT_URL; ?>users/register">Register</a>
       </li> 
+    <?php endif; ?>
     </ul>
     
   </div>
 </nav>
 <div class="row">
+  <?php Messages::display(); ?>
 	<?php require($view); ?>
 </div>
 
